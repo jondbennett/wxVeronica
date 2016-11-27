@@ -584,8 +584,12 @@ void VeronicaDialog::showNakDialog(int _tag, double _value, int _reason)
 		commandS = _("Set minimum day length");
 		break;
 
-	case telemetry_command_setExtraIllumination:
-		commandS = _("Set extra light time");
+	case telemetry_command_setExtraIlluminationMorning:
+		commandS = _("Set morning extra light time");
+		break;
+
+	case telemetry_command_setExtraIlluminationEvening:
+		commandS = _("Set evening extra light time");
 		break;
 
 	case telemetry_command_forceDoor:
@@ -691,7 +695,9 @@ void VeronicaDialog::OnButton_OpenSettings(wxCommandEvent & WXUNUSED(_e))
 	int sunsetOffset = m_telemetryData_01.m_sunsetOffset;
 
 	double minDayLength = m_telemetryData_01.m_minimumDayLength;
-	double extraLight = m_telemetryData_01.m_extraLightTime;
+
+	double extraLightMorning = m_telemetryData_01.m_extraLightTimeMorning;
+	double extraLightEvening = m_telemetryData_01.m_extraLightTimeEvening;
 
 	// Send the settings established by the settings dialog.
 	// If GPS was not locked at the time, then do not send
@@ -717,10 +723,16 @@ void VeronicaDialog::OnButton_OpenSettings(wxCommandEvent & WXUNUSED(_e))
 										 settingsDialog.getDayLength());
 		}
 
-		if(extraLight != settingsDialog.getExtraLight())
+		if(extraLightMorning != settingsDialog.getExtraLightMorning())
 		{
-			m_commandSender->sendCommand(telemetry_command_setExtraIllumination,
-										 settingsDialog.getExtraLight());
+			m_commandSender->sendCommand(telemetry_command_setExtraIlluminationMorning,
+										 settingsDialog.getExtraLightMorning());
+		}
+
+		if(extraLightEvening != settingsDialog.getExtraLightEvening())
+		{
+			m_commandSender->sendCommand(telemetry_command_setExtraIlluminationEvening,
+										 settingsDialog.getExtraLightEvening());
 		}
 	}
 

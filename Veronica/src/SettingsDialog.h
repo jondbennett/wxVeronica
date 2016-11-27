@@ -16,7 +16,8 @@ protected:
 		idSlider_sunsetOffset,
 
 		idSlider_dayLength,
-		idSlider_extraLight,
+		idSlider_extraLightMorning,
+		idSlider_extraLightEvening,
 
 		idButton_selectPort,
 
@@ -37,10 +38,12 @@ protected:
 	wxStaticText *m_textDoorClose;
 
 	wxSlider *m_sliderDayLength;
-	wxSlider *m_sliderExtraLight;
+	wxSlider *m_sliderExtraLightMorning;
+	wxSlider *m_sliderExtraLightEvening;
 
 	wxStaticText *m_textDayLength;
-	wxStaticText *m_textExtraLight;
+	wxStaticText *m_textExtraLightMorning;
+	wxStaticText *m_textExtraLightEvening;
 
 	wxCheckBox *m_checkDoorVoiceOpen;
 	wxCheckBox *m_checkDoorVoiceClose;
@@ -59,7 +62,8 @@ protected:
 	int m_sunsetOffset;
 
 	double m_dayLength;
-	double m_extraLight;
+	double m_extraLightMorning;
+	double m_extraLightEvening;
 
 	wxString m_serialPortName;
 	int m_baudRate;
@@ -90,7 +94,8 @@ public:
 	int getSunsetOffset() { return m_sunsetOffset; }
 
 	double getDayLength() { return m_dayLength; }
-	double getExtraLight() { return m_extraLight; }
+	double getExtraLightMorning() { return m_extraLightMorning; }
+	double getExtraLightEvening() { return m_extraLightEvening; }
 
 	bool gpsWasLocked() { return m_gpsWasLocked; }
 };

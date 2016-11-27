@@ -34,7 +34,8 @@ public:
 
 	// telemetry_tag_light_config
 	double m_minimumDayLength;
-	double m_extraLightTime;
+	double m_extraLightTimeMorning;
+	double m_extraLightTimeEvening;
 
 	// telemetry_tag_light_info
 	double m_morningLightOnTime;

@@ -28,7 +28,7 @@
 #define ToDLSTicks(hrs)	((int)(hrs * 4.))
 #define FromDLSTicks(ticks)	((double)(ticks / 4.))
 
-#define ToELSTicks(hrs)	((int) (hrs * 60.))
+#define ToELSTicks(hrs)	((int) roundf(hrs * 60.))
 #define FromELSTicks(ticks) ((double)(ticks / 60.))
 
 ////////////////////////////////////////////////////////////
@@ -186,34 +186,63 @@ CSettingsDialog::CSettingsDialog(wxWindow *_parent, const wxString &title,
 					  wxSizerFlags().
 					  Border(wxLEFT | wxTOP | wxRIGHT, BOXBORDER));
 
-		// Extra light
-		label = new wxStaticText(panel, -1, _("Extra Light (0 - 60 min)"),
+		// Morning Extra light
+		label = new wxStaticText(panel, -1, _("Extra Morning Light (0 - 60 min)"),
 								 wxDefaultPosition, wxDefaultSize,
 								 wxFIXED_MINSIZE);
 		flexGrid->Add(label,
 					  wxSizerFlags().
 					  Border(wxLEFT | wxTOP, BOXBORDER));
 
-		int elVal = ToELSTicks(m_telemData->m_extraLightTime);
+		int elValMorning = ToELSTicks(m_telemData->m_extraLightTimeMorning);
 		int elMin = ToELSTicks(GARY_COOPER_LIGHT_MIN_EXTRA);
 		int elMax = ToELSTicks(GARY_COOPER_LIGHT_MAX_EXTRA);
 
-		m_sliderExtraLight = new wxSlider(panel, idSlider_extraLight,
-										  elVal, elMin, elMax,
+		m_sliderExtraLightMorning = new wxSlider(panel, idSlider_extraLightMorning,
+										  elValMorning, elMin, elMax,
 										  wxDefaultPosition, wxSize(SLIDER_WIDTH, 25),
 										  wxSL_HORIZONTAL);
-		m_sliderExtraLight->SetTickFreq(1);
-		m_extraLight = (double)((double)m_sliderExtraLight->GetValue() / 60.);
+		m_sliderExtraLightMorning->SetTickFreq(1);
+		m_extraLightMorning = (double)((double)m_sliderExtraLightMorning->GetValue() / 60.);
 
-		flexGrid->Add(m_sliderExtraLight,
+		flexGrid->Add(m_sliderExtraLightMorning,
 					  wxSizerFlags().
 					  Border(wxLEFT | wxTOP | wxRIGHT, BOXBORDER).
 					  Expand());
 
-		m_textExtraLight = new wxStaticText(panel, -1, _("    "),
+		m_textExtraLightMorning = new wxStaticText(panel, -1, _("    "),
 											wxDefaultPosition, wxDefaultSize,
 											wxFIXED_MINSIZE);
-		flexGrid->Add(m_textExtraLight,
+		flexGrid->Add(m_textExtraLightMorning,
+					  wxSizerFlags().
+					  Border(wxLEFT | wxTOP | wxRIGHT, BOXBORDER));
+
+		// Evening Extra light
+		label = new wxStaticText(panel, -1, _("Extra Evening Light (0 - 60 min)"),
+								 wxDefaultPosition, wxDefaultSize,
+								 wxFIXED_MINSIZE);
+		flexGrid->Add(label,
+					  wxSizerFlags().
+					  Border(wxLEFT | wxTOP, BOXBORDER));
+
+		int elValEvening = ToELSTicks(m_telemData->m_extraLightTimeEvening);
+
+		m_sliderExtraLightEvening = new wxSlider(panel, idSlider_extraLightEvening,
+										  elValEvening, elMin, elMax,
+										  wxDefaultPosition, wxSize(SLIDER_WIDTH, 25),
+										  wxSL_HORIZONTAL);
+		m_sliderExtraLightEvening->SetTickFreq(1);
+		m_extraLightEvening = (double)((double)m_sliderExtraLightEvening->GetValue() / 60.);
+
+		flexGrid->Add(m_sliderExtraLightEvening,
+					  wxSizerFlags().
+					  Border(wxLEFT | wxTOP | wxRIGHT, BOXBORDER).
+					  Expand());
+
+		m_textExtraLightEvening = new wxStaticText(panel, -1, _("    "),
+											wxDefaultPosition, wxDefaultSize,
+											wxFIXED_MINSIZE);
+		flexGrid->Add(m_textExtraLightEvening,
 					  wxSizerFlags().
 					  Border(wxLEFT | wxTOP | wxRIGHT, BOXBORDER));
 	}
@@ -342,7 +371,8 @@ CSettingsDialog::CSettingsDialog(wxWindow *_parent, const wxString &title,
 		m_sliderSunsetOffset->Enable(false);
 
 		m_sliderDayLength->Enable(false);
-		m_sliderExtraLight->Enable(false);
+		m_sliderExtraLightMorning->Enable(false);
+		m_sliderExtraLightEvening->Enable(false);
 	}
 
 	// Update the text controls
@@ -383,10 +413,16 @@ void CSettingsDialog::OnSliderChange(wxScrollEvent& _e)
 		m_dayLength = FromDLSTicks(_e.GetInt());
 	}
 
-	// Extra light in the light schedule?
-	if(_e.GetId() == idSlider_extraLight)
+	// Extra morning light in the light schedule?
+	if(_e.GetId() == idSlider_extraLightMorning)
 	{
-		m_extraLight = FromELSTicks(_e.GetInt());
+		m_extraLightMorning = FromELSTicks(_e.GetInt());
+	}
+
+	// Extra evening light in the light schedule?
+	if(_e.GetId() == idSlider_extraLightMorning)
+	{
+		m_extraLightEvening = FromELSTicks(_e.GetInt());
 	}
 
 	// Update other controls
@@ -489,11 +525,17 @@ void CSettingsDialog::UpdateTextControls()
 	textValue = wxString::Format("%02d:%02d", hour, minute);
 	m_textDayLength->SetLabel(textValue);
 
-	m_extraLight = (m_sliderExtraLight->GetValue() / 60.);
-	hour = (int)m_extraLight;
-	minute = (int)(60. * (m_extraLight - hour));
+	m_extraLightMorning = (m_sliderExtraLightMorning->GetValue() / 60.);
+	hour = (int)m_extraLightMorning;
+	minute = (int)(60. * (m_extraLightMorning - hour));
 	textValue = wxString::Format("%02d:%02d", hour, minute);
-	m_textExtraLight->SetLabel(textValue);
+	m_textExtraLightMorning->SetLabel(textValue);
+
+	m_extraLightEvening = (m_sliderExtraLightEvening->GetValue() / 60.);
+	hour = (int)m_extraLightEvening;
+	minute = (int)(60. * (m_extraLightEvening - hour));
+	textValue = wxString::Format("%02d:%02d", hour, minute);
+	m_textExtraLightEvening->SetLabel(textValue);
 }
 
 void CSettingsDialog::OnOK(wxCommandEvent &WXUNUSED(_e))

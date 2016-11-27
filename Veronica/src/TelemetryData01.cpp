@@ -51,7 +51,8 @@ void CTelemetryData_01::clearCommsRelated()
 
 	// telemetry_tag_light_config
 	m_minimumDayLength = TELEMETRY_BAD_FLOAT;
-	m_extraLightTime = TELEMETRY_BAD_FLOAT;
+	m_extraLightTimeMorning = TELEMETRY_BAD_FLOAT;
+	m_extraLightTimeEvening = TELEMETRY_BAD_FLOAT;
 
 	// telemetry_tag_command_ack
 	m_commandAckTag = TELEMETRY_BAD_INT;
@@ -105,8 +106,8 @@ void CTelemetryData_01::processTelemetry(wxArrayString _telemData)
 
 	case telemetry_tag_light_config:
 		m_minimumDayLength = atof(_telemData[1].c_str());
-		m_extraLightTime = atof(_telemData[2].c_str());
-		break;
+		m_extraLightTimeMorning = atof(_telemData[2].c_str());
+		m_extraLightTimeEvening = atof(_telemData[3].c_str());
 		break;
 
 	case telemetry_tag_light_info:
