@@ -73,7 +73,7 @@ BEGIN_EVENT_TABLE(VeronicaDialog, wxDialog)
 END_EVENT_TABLE()
 
 VeronicaDialog::VeronicaDialog(wxDialog *dlg, const wxString &title)
-	: wxDialog(dlg, -1, title)
+	: wxDialog(dlg, -1, title, wxDefaultPosition, wxDefaultSize,wxDEFAULT_DIALOG_STYLE | wxMINIMIZE_BOX)
 {
 	CreateControls();
 
