@@ -98,7 +98,6 @@ protected:
 	void CreateControls();
 	void UpdateControls();
 
-	void ProcessTelemetry_01();
 	wxString formatDoubleTime(double _t);
 
 	DECLARE_EVENT_TABLE()

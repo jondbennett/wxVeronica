@@ -15,3 +15,5 @@ wxString config_key_voice_alert_light_off("/Voice/Alert_Light_Off");
 
 wxString config_key_voice_warning_comm("/Voice/Warning_Comm");
 wxString config_key_voice_warning_gps("/Voice/Warning_GPS");
+
+wxString config_key_start_minimized("/Startup/Minimized");

@@ -260,7 +260,7 @@ CSettingsDialog::CSettingsDialog(wxWindow *_parent, const wxString &title,
 			wxStaticBoxSizer *voiceAlertSizer = new wxStaticBoxSizer(
 				wxVERTICAL,
 				panel,
-				_("Voice Alerts"));
+				_("Voice Alerts & Startup"));
 			voice_serial_sizer->Add(voiceAlertSizer,
 									wxSizerFlags().
 									Border(wxALL, BOXBORDER));
@@ -305,6 +305,13 @@ CSettingsDialog::CSettingsDialog(wxWindow *_parent, const wxString &title,
 				flexGrid->Add(m_checkGPSWarning,
 							  wxSizerFlags().
 							  Border(wxLEFT | wxRIGHT | wxTOP, CONTROLBORDER));
+
+				m_checkStartMinimized = new wxCheckBox(panel, idCheck_startMinimized,
+												   _("Start Minimized"));
+				flexGrid->Add(m_checkStartMinimized,
+							  wxSizerFlags().
+							  Border(wxLEFT | wxRIGHT | wxTOP, CONTROLBORDER));
+
 
 			}
 		}
@@ -363,6 +370,8 @@ CSettingsDialog::CSettingsDialog(wxWindow *_parent, const wxString &title,
 
 	readCheckBoxSetting(m_checkCommsWarning, config_key_voice_warning_comm);
 	readCheckBoxSetting(m_checkGPSWarning, config_key_voice_warning_gps);
+
+	readCheckBoxSetting(m_checkStartMinimized, config_key_start_minimized, false);
 
 	// Disable everything that is not available when GPS is not locked
 	if(!m_gpsWasLocked)
@@ -555,6 +564,8 @@ void CSettingsDialog::OnOK(wxCommandEvent &WXUNUSED(_e))
 
 	writeCheckBoxSetting(m_checkCommsWarning, config_key_voice_warning_comm);
 	writeCheckBoxSetting(m_checkGPSWarning, config_key_voice_warning_gps);
+
+	writeCheckBoxSetting(m_checkStartMinimized, config_key_start_minimized);
 
 	EndModal(wxID_OK);
 }

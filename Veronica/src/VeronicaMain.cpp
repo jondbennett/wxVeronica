@@ -41,7 +41,7 @@
 // Serial port stuff
 #define POLL_TIMER_MS	(50)
 #define UPDATE_TIMER_MS (1000)
-#define COMM_DATA_TIMEOUT	(30)
+#define COMM_DATA_TIMEOUT	(15)
 #define SEND_PROTOCOL_VERSION_TIME	(15L)
 
 #define EFFECTIVELY_EQUAL(v1, v2) ((fabs(v1-v2) < 0.02))
@@ -97,6 +97,11 @@ VeronicaDialog::VeronicaDialog(wxDialog *dlg, const wxString &title)
 	m_pollTimer.Start(POLL_TIMER_MS, true);
 
 	LoadSettings();
+
+	bool minimized = false;
+	wxConfig::Get()->Read(config_key_start_minimized, &minimized, false);
+	if(minimized)
+		Iconize(true);
 }
 
 VeronicaDialog::~VeronicaDialog()
@@ -300,7 +305,10 @@ void VeronicaDialog::UpdateControls()
 
 	// GPS status
 	if(m_telemetryData_01.m_GPSLocked)
-		m_ctrlGPSStatus->SetLabel(_("OK"));
+	{
+		labelText = wxString::Format(_("OK (%d)"), m_telemetryData_01.m_nSats);
+		m_ctrlGPSStatus->SetLabel(labelText);
+	}
 	else
 		m_ctrlGPSStatus->SetLabel(_("ERROR"));
 
@@ -816,6 +824,12 @@ void VeronicaDialog::receiveTerm(int _index, const char *_value)
 void VeronicaDialog::receiveChecksumCorrect()
 {
 	// The first term is the tag
+	if(m_telemData.GetCount() < 1)
+	{
+		m_telemData.Clear();
+		return;
+	}
+
 	int tag = atoi(m_telemData[0].c_str());
 
 	// Special version screen
@@ -829,6 +843,7 @@ void VeronicaDialog::receiveChecksumCorrect()
 				m_telemetryVersion = TELEMETRY_VERSION_01;
 		}
 
+		m_telemData.Clear();
 		return;
 	}
 
@@ -861,6 +876,9 @@ void VeronicaDialog::receiveChecksumCorrect()
 			m_telemetryData_01.m_commandNakReason = TELEMETRY_BAD_INT;
 		}
 	}
+
+	// Make sure to clear the telem data just to be sure.
+	m_telemData.Clear();
 }
 
 void VeronicaDialog::receiveChecksumError()
@@ -882,6 +900,8 @@ void VeronicaDialog::receiveChecksumError()
 		wxMessageBox(msg, _("Bad checksum for telemetry"));
 	#endif
 	*/
+
+	m_telemData.Clear();
 }
 
 wxString VeronicaDialog::formatDoubleTime(double _t)

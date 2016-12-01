@@ -29,6 +29,8 @@ protected:
 
 		idCheck_commsWarning,
 		idCheck_GPSWarning,
+
+		idCheck_startMinimized,
 	};
 
 	wxSlider *m_sliderSunriseOffset;
@@ -53,6 +55,8 @@ protected:
 
 	wxCheckBox *m_checkCommsWarning;
 	wxCheckBox *m_checkGPSWarning;
+
+	wxCheckBox *m_checkStartMinimized;
 
 	CTelemetryData_01 *m_telemData;
 	bool m_gpsWasLocked;
@@ -83,10 +87,6 @@ public:
 	CSettingsDialog(wxWindow *_parent, const wxString& _title,
 					CTelemetryData_01 &_telemData);
 	virtual ~CSettingsDialog();
-
-	void addDoubleTimeToArrayString(CTelemetryData_01 &_telem,
-					   double _time,
-					   wxArrayString &_arrayString);
 
 	wxString formatDoubleTime(double _t);
 
