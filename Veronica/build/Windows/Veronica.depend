@@ -2958,7 +2958,7 @@
 
 1412652844 c:\users\jon\documents\dev\wxwidgets-3.0.2\include\wx\listimpl.cpp
 
-1479958222 s:\garycooper\garycooper\telemetrytags.h
+1480256170 s:\garycooper\garycooper\telemetrytags.h
 
 1479942674 s:\garycooper\veronica\src\misc.h
 
@@ -3017,12 +3017,12 @@
 	"wx/defs.h"
 	"wx/object.h"
 
-1479948375 source:s:\garycooper\veronica\src\telemetrydata01.cpp
+1480269828 source:s:\garycooper\veronica\src\telemetrydata01.cpp
 	<wx/wx.h>
 	"../../GaryCooper/TelemetryTags.h"
 	"TelemetryData01.h"
 
-1479942175 s:\garycooper\veronica\src\telemetrydata01.h
+1480256395 s:\garycooper\veronica\src\telemetrydata01.h
 
 1479755014 source:s:\garycooper\veronica\src\veronicaapp.cpp
 	"wx_pch.h"
@@ -3124,7 +3124,7 @@
 
 1412652842 c:\users\jon\documents\dev\wxwidgets-3.0.2\include\wx\generic\statline.h
 
-1480075818 source:s:\garycooper\veronica\src\settingsdialog.cpp
+1480269902 source:s:\garycooper\veronica\src\settingsdialog.cpp
 	<wx/wx.h>
 	<wx/config.h>
 	"../../GaryCooper/TelemetryTags.h"
@@ -3134,11 +3134,11 @@
 	"SerialPortDialog.h"
 	"TimeDisplayFormat.h"
 
-1480077860 s:\garycooper\veronica\src\settingsdialog.h
+1480256810 s:\garycooper\veronica\src\settingsdialog.h
 
 1480072739 s:\garycooper\veronica\src\timedisplayformat.h
 
-1480079197 source:s:\garycooper\veronica\src\veronicamain.cpp
+1480257098 source:s:\garycooper\veronica\src\veronicamain.cpp
 	"wx_pch.h"
 	<wx/wx.h>
 	<wx/sound.h>
@@ -3162,4 +3162,122 @@
 1412652844 c:\users\jon\documents\dev\wxwidgets-3.0.2\lib\gcc_dll\mswu\wx\setup.h
 
 1480080441 source:s:\garycooper\veronica\src\resource.rc
+
+1479748583 source:s:\garycooper\wxveronica\src\changenotifier.cpp
+	<wx/wx.h>
+	"ChangeNotifier.h"
+	"SoundThread.h"
+
+1479748451 s:\garycooper\wxveronica\src\changenotifier.h
+
+1479662592 s:\garycooper\wxveronica\src\soundthread.h
+
+1479950405 source:s:\garycooper\wxveronica\src\commandsender.cpp
+	<wx/wx.h>
+	<wx/listimpl.cpp>
+	"../../GaryCooper/ICommInterface.h"
+	"../../GaryCooper/Telemetry.h"
+	"../../GaryCooper/TelemetryTags.h"
+	"Misc.h"
+	"SerialComm.h"
+	"CommandSender.h"
+
+1479942674 s:\garycooper\wxveronica\src\misc.h
+
+1479415032 s:\garycooper\wxveronica\src\serialcomm.h
+
+1479950062 s:\garycooper\wxveronica\src\commandsender.h
+
+1480603596 source:s:\garycooper\wxveronica\src\configkeys.cpp
+	<wx/wx.h>
+	"ConfigKeys.h"
+
+1480603565 s:\garycooper\wxveronica\src\configkeys.h
+
+1480080441 source:s:\garycooper\wxveronica\src\resource.rc
+
+1479962299 source:s:\garycooper\wxveronica\src\serialcomm_msw.cpp
+	<windows.h>
+	<winnt.h>
+	<string.h>
+	"../../GaryCooper/ICommInterface.h"
+	"../../GaryCooper/SlidingBuf.h"
+	"SerialComm.h"
+
+1479743233 source:s:\garycooper\wxveronica\src\serialportdialog.cpp
+	<wx/wx.h>
+	<wx/filename.h>
+	"SerialPortDialog.h"
+
+1479563457 s:\garycooper\wxveronica\src\serialportdialog.h
+
+1480604635 source:s:\garycooper\wxveronica\src\settingsdialog.cpp
+	<wx/wx.h>
+	<wx/config.h>
+	"../../GaryCooper/TelemetryTags.h"
+	"TelemetryData01.h"
+	"SettingsDialog.h"
+	"ConfigKeys.h"
+	"SerialPortDialog.h"
+	"TimeDisplayFormat.h"
+
+1480256395 s:\garycooper\wxveronica\src\telemetrydata01.h
+
+1480603514 s:\garycooper\wxveronica\src\settingsdialog.h
+
+1480072739 s:\garycooper\wxveronica\src\timedisplayformat.h
+
+1480077480 source:s:\garycooper\wxveronica\src\soundthread.cpp
+	<wx/wx.h>
+	<wx/sound.h>
+	"SoundThread.h"
+
+1480599627 source:s:\garycooper\wxveronica\src\telemetrydata01.cpp
+	<wx/wx.h>
+	"../../GaryCooper/TelemetryTags.h"
+	"TelemetryData01.h"
+
+1479755014 source:s:\garycooper\wxveronica\src\veronicaapp.cpp
+	"wx_pch.h"
+	<wx/wx.h>
+	<wx/config.h>
+	"../../GaryCooper/ICommInterface.h"
+	"../../GaryCooper/Telemetry.h"
+	"../../GaryCooper/TelemetryTags.h"
+	"SerialComm.h"
+	"SerialPortDialog.h"
+	"TelemetryData01.h"
+	"CommandSender.h"
+	"VeronicaApp.h"
+	"VeronicaMain.h"
+
+1479487432 s:\garycooper\wxveronica\src\veronicaapp.h
+	<wx/app.h>
+
+1480599708 s:\garycooper\wxveronica\src\veronicamain.h
+	<wx/wx.h>
+	"VeronicaApp.h"
+	<wx/button.h>
+	<wx/statline.h>
+
+1480604507 source:s:\garycooper\wxveronica\src\veronicamain.cpp
+	"wx_pch.h"
+	<wx/wx.h>
+	<wx/sound.h>
+	<wx/config.h>
+	<time.h>
+	"../../GaryCooper/ICommInterface.h"
+	"../../GaryCooper/Telemetry.h"
+	"../../GaryCooper/TelemetryTags.h"
+	"SerialComm.h"
+	"TelemetryData01.h"
+	"SettingsDialog.h"
+	"ChangeNotifier.h"
+	"ConfigKeys.h"
+	"CommandSender.h"
+	"TimeDisplayFormat.h"
+	"Freezer.h"
+	"VeronicaMain.h"
+
+1441027725 s:\garycooper\wxveronica\src\freezer.h
 
