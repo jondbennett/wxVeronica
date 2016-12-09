@@ -13,8 +13,8 @@
 #include <termios.h>
 #include <string.h>
 
-#include "../../GaryCooper/ICommInterface.h"
-#include "../../GaryCooper/SlidingBuf.h"
+#include "../../../GaryCooper/ICommInterface.h"
+#include "../../../GaryCooper/SlidingBuf.h"
 #include "SerialComm.h"
 
 // Read/write buffer size (right here)

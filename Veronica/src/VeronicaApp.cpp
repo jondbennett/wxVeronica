@@ -18,9 +18,9 @@
 #include <wx/wx.h>
 #include <wx/config.h>
 
-#include "../../GaryCooper/ICommInterface.h"
-#include "../../GaryCooper/Telemetry.h"
-#include "../../GaryCooper/TelemetryTags.h"
+#include "../../../GaryCooper/ICommInterface.h"
+#include "../../../GaryCooper/Telemetry.h"
+#include "../../../GaryCooper/TelemetryTags.h"
 
 #include "SerialComm.h"
 #include "SerialPortDialog.h"

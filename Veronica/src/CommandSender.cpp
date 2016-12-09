@@ -5,9 +5,9 @@
 #include <wx/wx.h>
 #include <wx/listimpl.cpp>
 
-#include "../../GaryCooper/ICommInterface.h"
-#include "../../GaryCooper/Telemetry.h"
-#include "../../GaryCooper/TelemetryTags.h"
+#include "../../../GaryCooper/ICommInterface.h"
+#include "../../../GaryCooper/Telemetry.h"
+#include "../../../GaryCooper/TelemetryTags.h"
 
 #include "Misc.h"
 

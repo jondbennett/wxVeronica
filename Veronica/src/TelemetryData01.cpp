@@ -1,7 +1,7 @@
 
 #include <wx/wx.h>
 
-#include "../../GaryCooper/TelemetryTags.h"
+#include "../../../GaryCooper/TelemetryTags.h"
 #include "TelemetryData01.h"
 
 ////////////////////////////////////////////////////////////////
