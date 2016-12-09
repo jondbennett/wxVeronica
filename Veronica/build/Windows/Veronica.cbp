@@ -69,12 +69,12 @@
 		<Linker>
 			<Add option="-mthreads" />
 		</Linker>
-		<Unit filename="../../../GaryCooper/ICommInterface.h" />
-		<Unit filename="../../../GaryCooper/SlidingBuf.cpp" />
-		<Unit filename="../../../GaryCooper/SlidingBuf.h" />
-		<Unit filename="../../../GaryCooper/Telemetry.cpp" />
-		<Unit filename="../../../GaryCooper/Telemetry.h" />
-		<Unit filename="../../../GaryCooper/TelemetryTags.h" />
+		<Unit filename="../../../../GaryCooper/ICommInterface.h" />
+		<Unit filename="../../../../GaryCooper/SlidingBuf.cpp" />
+		<Unit filename="../../../../GaryCooper/SlidingBuf.h" />
+		<Unit filename="../../../../GaryCooper/Telemetry.cpp" />
+		<Unit filename="../../../../GaryCooper/Telemetry.h" />
+		<Unit filename="../../../../GaryCooper/TelemetryTags.h" />
 		<Unit filename="../../src/ChangeNotifier.cpp" />
 		<Unit filename="../../src/ChangeNotifier.h" />
 		<Unit filename="../../src/CommandSender.cpp" />
