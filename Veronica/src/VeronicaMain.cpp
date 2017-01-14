@@ -664,27 +664,56 @@ void VeronicaDialog::showNakDialog(int _tag, double _value, int _reason)
 
 void VeronicaDialog::OnButton_ForceDoor(wxCommandEvent & WXUNUSED(_e))
 {
-	int doorStatus = m_telemetryData_01.m_doorStatus;
-	if(doorStatus == doorState_unknown)
-		return;
-
-	if((m_telemetryVersion == TELEMETRY_VERSION_01) &&
-			(m_commsAreUp))
+	if((m_telemetryVersion != TELEMETRY_VERSION_01) ||
+			(!m_commsAreUp))
 	{
-		m_commandSender->sendCommand(telemetry_command_forceDoor,
-									 (doorStatus != doorCommand_open) ? doorCommand_open : doorCommand_close);
-
+		wxMessageBox(_("Comm or telemetry problem...\nno commands may be sent."),
+					_("Problem"),
+					wxOK | wxCENTER | wxICON_EXCLAMATION,
+					this);
+		return;
 	}
+
+	int doorStatus = m_telemetryData_01.m_doorStatus;
+	if(doorStatus != doorState_unknown)
+	{
+		if(wxMessageBox(_("Are you sure?"),
+						_("Verification"),
+						wxYES_NO | wxCANCEL | wxNO_DEFAULT,
+						this) == wxNO)
+		{
+			return;
+		}
+	}
+
+	m_commandSender->sendCommand(telemetry_command_forceDoor,
+								(doorStatus != doorCommand_open) ? doorCommand_open : doorCommand_close);
 }
 
 void VeronicaDialog::OnButton_ForceLight(wxCommandEvent & WXUNUSED(_e))
 {
-	if((m_telemetryVersion == TELEMETRY_VERSION_01) &&
-			(m_commsAreUp))
+	if((m_telemetryVersion != TELEMETRY_VERSION_01) ||
+			(!m_commsAreUp))
 	{
-		m_commandSender->sendCommand(telemetry_command_forceLight,
-									 (m_telemetryData_01.m_lightIsOn ? 0 : 1));
+		wxMessageBox(_("Comm or telemetry problem...\nno commands may be sent."),
+					_("Problem"),
+					wxOK | wxCENTER | wxICON_EXCLAMATION,
+					this);
+		return;
 	}
+
+	if(wxMessageBox(_("Are you sure?"),
+					_("Verification"),
+					wxYES_NO | wxCANCEL | wxNO_DEFAULT,
+					this) == wxNO)
+	{
+		return;
+	}
+
+
+	m_commandSender->sendCommand(telemetry_command_forceLight,
+								(m_telemetryData_01.m_lightIsOn ? 0 : 1));
+
 }
 
 void VeronicaDialog::OnButton_OpenSettings(wxCommandEvent & WXUNUSED(_e))
